@@ -17,59 +17,59 @@
     <div id="mobileScrim" class="mobile-scrim"></div>
     <aside class="sidebar" aria-label="Main navigation">
       <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><strong>Brahma<span>Farm</span></strong><small>YOUR FARM, IN FOCUS</small></div></div>
-      <div class="workspace-card"><span class="workspace-card-icon">B</span><span><strong>BrahmaFarm</strong><small>Farm workspace</small></span><span class="workspace-card-chevron">⌄</span></div>
+      <div class="workspace-card"><span class="workspace-card-icon">B</span><span><strong>BrahmaFarm</strong><small>Farm workspace</small></span></div>
       <div class="workspace-label">WORKSPACE <span class="workspace-dot"></span></div>
       <nav class="main-nav">
-        <button class="nav-item active" data-view="overview"><span class="nav-icon">◫</span> Overview</button>
-        <button class="nav-item" data-view="sheet"><span class="nav-icon">▦</span> BrahmaSpreadsheet</button>
-        <button class="nav-item" data-view="cycles"><span class="nav-icon">◉</span> Crop cycles</button>
-        <button class="nav-item" data-view="water"><span class="nav-icon">≈</span> Fields & water</button>
-        <button class="nav-item" data-view="planner"><span class="nav-icon">▱</span> Crop planner</button>
+        <button class="nav-item active" data-view="overview"><svg class="ui-icon"><use href="./icons.svg#home"/></svg> Overview</button>
+        <button class="nav-item" data-view="sheet"><svg class="ui-icon"><use href="./icons.svg#table"/></svg> BrahmaSpreadsheet</button>
+        <button class="nav-item" data-view="cycles"><svg class="ui-icon"><use href="./icons.svg#cycle"/></svg> Crop cycles</button>
+        <button class="nav-item" data-view="water"><svg class="ui-icon"><use href="./icons.svg#water"/></svg> Fields & water</button>
+        <button class="nav-item" data-view="planner"><svg class="ui-icon"><use href="./icons.svg#planner"/></svg> Crop planner</button>
         <div class="nav-divider"></div><div class="nav-section-label">INTELLIGENCE</div>
-        <button class="nav-item" data-view="insights"><span class="nav-icon">⌁</span> Insights <span class="nav-badge" id="insightCount">0</span></button>
-        <button class="nav-item" data-view="research"><span class="nav-icon">◇</span> Research helper</button>
+        <button class="nav-item" data-view="insights"><svg class="ui-icon"><use href="./icons.svg#insights"/></svg> Insights <span class="nav-badge" id="insightCount">0</span></button>
+        <button class="nav-item" data-view="research"><svg class="ui-icon"><use href="./icons.svg#research"/></svg> Research helper</button>
       </nav>
       <div class="sidebar-spacer"></div>
       <div class="sidebar-bottom">
-        <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span> Farm settings</button>
+        <button class="nav-item" data-view="settings"><svg class="ui-icon"><use href="./icons.svg#settings"/></svg> Farm settings</button>
         <div class="storage-note"><span class="storage-dot"></span><div><strong>Offline ready</strong><small>Saved on this device</small></div></div>
       </div>
     </aside>
 
     <main class="main-content">
       <header class="topbar">
-        <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open menu">☰</button><div class="mobile-brand">Brahma<span>Farm</span></div>
+        <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open menu"><svg class="ui-icon"><use href="./icons.svg#menu"/></svg></button><div class="mobile-brand">Brahma<span>Farm</span></div>
         <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbCurrent">Overview</strong></div>
         <div class="topbar-right"><span class="today-label" id="todayLabel"></span><span class="local-pill"><span></span> Local workspace</span><button class="icon-button help-button" id="helpButton" title="How this works" aria-label="How this works">?</button><div class="avatar" title="BrahmaFarm workspace">BF</div></div>
       </header>
 
       <div class="page-wrap">
-        <div id="sampleBanner" class="sample-banner"><div><span class="sample-icon">✦</span><strong>You're exploring with sample records.</strong> These numbers are illustrative.</div><button id="clearSampleButton">Start with my farm <span>→</span></button></div>
+        <div id="sampleBanner" class="sample-banner"><div><strong>You're exploring with sample records.</strong> These numbers are illustrative.</div><button id="clearSampleButton">Start with my farm <span>→</span></button></div>
 
         <section class="view active" id="view-overview">
-          <div class="page-heading"><div><div class="eyebrow">FARM COMMAND CENTRE</div><h1>Your farm, clearly in view.</h1><p>Operations, water, crop health and returns in one place.</p></div><button class="primary-button" data-action="add"><span>＋</span> Add record</button></div>
+          <div class="page-heading"><div><div class="eyebrow">FARM COMMAND CENTRE</div><h1>Your farm, clearly in view.</h1><p>Operations, water, crop health and returns in one place.</p></div><button class="primary-button" data-action="add">Add record</button></div>
           <div id="heroStrip" class="hero-strip"></div>
-          <div class="quick-log"><div><span class="eyebrow">QUICK LOG</span><strong>What happened on the farm?</strong></div><div class="quick-log-actions"><button data-quick-activity="Irrigation"><span>≈</span> Water</button><button data-quick-activity="Health"><span>✳</span> Health check</button><button data-quick-activity="Harvest"><span>◈</span> Harvest</button><button data-quick-activity="Sale"><span>₹</span> Sale</button></div></div>
+          <div class="quick-log"><div><span class="eyebrow">QUICK LOG</span><strong>What happened on the farm?</strong></div><div class="quick-log-actions"><button data-quick-activity="Irrigation"><svg class="ui-icon"><use href="./icons.svg#water"/></svg> Water</button><button data-quick-activity="Health"><svg class="ui-icon"><use href="./icons.svg#health"/></svg> Health check</button><button data-quick-activity="Harvest"><svg class="ui-icon"><use href="./icons.svg#harvest"/></svg> Harvest</button><button data-quick-activity="Sale"><svg class="ui-icon"><use href="./icons.svg#sale"/></svg> Sale</button></div></div>
           <div class="summary-grid" id="summaryGrid"></div>
           <div class="overview-grid">
             <div class="panel profit-panel"><div class="panel-head"><div><div class="eyebrow">PERFORMANCE</div><h2>Recorded net over time</h2><p>Revenue minus costs dated in each month</p></div><span class="panel-chip">Recorded data</span></div><div id="profitChart" class="profit-chart"></div></div>
-            <div class="panel attention-panel"><div class="panel-head"><div><div class="eyebrow">FARM PULSE</div><h2>Worth your attention</h2><p>Signals from your own records</p></div><span class="pulse-symbol">✳</span></div><div id="attentionList"></div><button class="text-link" data-view="insights">See all insights <span>→</span></button></div>
+            <div class="panel attention-panel"><div class="panel-head"><div><div class="eyebrow">FARM PULSE</div><h2>Worth your attention</h2><p>Signals from your own records</p></div></div><div id="attentionList"></div><button class="text-link" data-view="insights">See all insights <span>→</span></button></div>
           </div>
           <div class="section-heading"><div><div class="eyebrow">ON THE GROUND</div><h2>Fields at a glance</h2></div><button class="text-link" data-view="water">Open field view →</button></div>
           <div id="overviewFields" class="field-card-grid"></div>
-          <div class="overview-lower-grid"><div class="panel work-panel"><div class="panel-head"><div><div class="eyebrow">WORKBOARD</div><h2>Upcoming work</h2><p>Simple tasks for the next farm decisions</p></div><button class="text-link" id="addTaskButton">＋ Add task</button></div><div id="overviewTasks"></div></div><div class="panel quality-panel"><div class="panel-head"><div><div class="eyebrow">DATA FOUNDATION</div><h2>Record quality</h2><p>Know what can and cannot be trusted yet</p></div></div><div id="overviewQuality"></div></div></div>
+          <div class="overview-lower-grid"><div class="panel work-panel"><div class="panel-head"><div><div class="eyebrow">WORKBOARD</div><h2>Upcoming work</h2><p>Simple tasks for the next farm decisions</p></div><button class="text-link" id="addTaskButton">Add task</button></div><div id="overviewTasks"></div></div><div class="panel quality-panel"><div class="panel-head"><div><div class="eyebrow">DATA FOUNDATION</div><h2>Record quality</h2><p>Know what can and cannot be trusted yet</p></div></div><div id="overviewQuality"></div></div></div>
           <div class="panel recent-panel"><div class="panel-head"><div><div class="eyebrow">ACTIVITY</div><h2>Recent records</h2></div><button class="text-link" data-view="sheet">Open spreadsheet <span>→</span></button></div><div id="recentRecords"></div></div>
         </section>
 
         <section class="view" id="view-sheet">
-          <div class="page-heading"><div><div class="eyebrow">YOUR SOURCE OF TRUTH</div><h1>BrahmaSpreadsheet</h1><p>Every farm activity in one editable ledger. Changes save automatically on this device.</p></div><button class="primary-button" data-action="add"><span>＋</span> Add row</button></div>
+          <div class="page-heading"><div><div class="eyebrow">YOUR SOURCE OF TRUTH</div><h1>BrahmaSpreadsheet</h1><p>Every farm activity in one editable ledger. Changes save automatically on this device.</p></div><button class="primary-button" data-action="add">Add row</button></div>
           <div class="sheet-toolbar"><div class="sheet-tabs"><span class="sheet-tab active">Farm records <span id="recordCount">0</span></span></div><div class="toolbar-actions"><label class="search-box"><span>⌕</span><input id="sheetSearch" type="search" placeholder="Search records" aria-label="Search records"></label><select id="sheetFilter" aria-label="Filter records"><option value="all">All activities</option><option>Planting</option><option>Irrigation</option><option>Health</option><option>Harvest</option><option>Expense</option><option>Sale</option><option>Observation</option></select><button class="outline-button" id="importButton">↑ Import CSV</button><button class="outline-button" id="exportButton">↓ Export CSV</button><input type="file" accept=".csv,text/csv" id="csvFile" hidden></div></div>
           <div class="sheet-container"><div class="sheet-scroll"><table class="data-table" id="dataTable"><thead><tr><th class="row-num">#</th><th>Date</th><th>Field</th><th>Crop</th><th>Cycle</th><th>Activity</th><th class="num">Quantity</th><th>Unit</th><th class="num">Water (L)</th><th class="num">Cost (₹)</th><th class="num">Revenue (₹)</th><th>Health</th><th class="note-col">Notes</th><th class="row-actions">⋯</th></tr></thead><tbody id="sheetBody"></tbody></table></div><div class="sheet-footer"><span id="sheetFooterText"></span><span>Click a cell to edit · Tab to move between cells</span></div></div>
           <div class="sheet-help"><span>ⓘ</span> Record actual amounts. Profit and advice use your entries only; missing values are treated as unknown, not zero.</div>
         </section>
 
         <section class="view" id="view-cycles">
-          <div class="page-heading"><div><div class="eyebrow">GROWING SEASONS</div><h1>Crop cycles</h1><p>Connect planting, water, harvest and sales to the same crop.</p></div><button class="primary-button" id="newCycleButton"><span>＋</span> New cycle</button></div>
+          <div class="page-heading"><div><div class="eyebrow">GROWING SEASONS</div><h1>Crop cycles</h1><p>Connect planting, water, harvest and sales to the same crop.</p></div><button class="primary-button" id="newCycleButton">New cycle</button></div>
           <div id="cycleSummary" class="mini-stat-row"></div><div id="cycleGrid" class="cycle-grid"></div>
           <div id="cycleDetail" class="panel cycle-detail"></div>
         </section>
@@ -96,7 +96,7 @@
 
         <section class="view" id="view-research">
           <div class="page-heading"><div><div class="eyebrow">RESEARCH DESK</div><h1>Ask a better farm question.</h1><p>Start with your own records, then investigate with trusted agricultural sources.</p></div></div>
-          <div class="research-layout"><div class="panel research-main"><label class="field-label" for="researchQuestion">What do you want to explore?</label><textarea id="researchQuestion" rows="3" placeholder="e.g. Is tomato using too much water in Field A? What should I check before planting wheat next month?"></textarea><div class="research-controls"><select id="researchCrop" aria-label="Crop context"><option value="">All crops</option></select><button class="primary-button" id="researchButton">Build research brief <span>→</span></button></div><div id="researchResult" class="research-result empty-research"><div class="research-empty-icon">◇</div><h3>Your research brief will appear here</h3><p>It will summarize relevant farm records, identify gaps, and create focused searches in official sources.</p></div></div><div class="panel research-side"><div class="eyebrow">START WITH A QUESTION</div><h2>Explore common decisions</h2><div class="prompt-list"><button data-prompt="Which crop and month has given us the best recorded profit?">Which crop and month paid best? <span>↗</span></button><button data-prompt="Which crop has used the most water per kilogram harvested?">Where is water going? <span>↗</span></button><button data-prompt="Which fields show declining crop health, and what should I investigate?">What needs a closer look? <span>↗</span></button><button data-prompt="What evidence do we need before choosing next month's crop?">What should we plant next? <span>↗</span></button></div><div class="research-disclaimer"><strong>Research with context</strong><p>This desk does not diagnose pests or predict prices. It helps you form questions and check your own evidence before acting.</p></div></div></div>
+          <div class="research-layout"><div class="panel research-main"><label class="field-label" for="researchQuestion">What do you want to explore?</label><textarea id="researchQuestion" rows="3" placeholder="e.g. Is tomato using too much water in Field A? What should I check before planting wheat next month?"></textarea><div class="research-controls"><select id="researchCrop" aria-label="Crop context"><option value="">All crops</option></select><button class="primary-button" id="researchButton">Build research brief <span>→</span></button></div><div id="researchResult" class="research-result empty-research"><div class="research-empty-icon"><svg class="ui-icon"><use href="./icons.svg#research"/></svg></div><h3>Your research brief will appear here</h3><p>It will summarize relevant farm records, identify gaps, and create focused searches in official sources.</p></div></div><div class="panel research-side"><div class="eyebrow">START WITH A QUESTION</div><h2>Explore common decisions</h2><div class="prompt-list"><button data-prompt="Which crop and month has given us the best recorded profit?">Which crop and month paid best? <span>↗</span></button><button data-prompt="Which crop has used the most water per kilogram harvested?">Where is water going? <span>↗</span></button><button data-prompt="Which fields show declining crop health, and what should I investigate?">What needs a closer look? <span>↗</span></button><button data-prompt="What evidence do we need before choosing next month's crop?">What should we plant next? <span>↗</span></button></div><div class="research-disclaimer"><strong>Research with context</strong><p>This desk does not diagnose pests or predict prices. It helps you form questions and check your own evidence before acting.</p></div></div></div>
         </section>
 
         <section class="view" id="view-settings">
@@ -112,7 +112,7 @@
   <dialog id="taskDialog" class="record-dialog"><form id="taskForm" method="dialog"><div class="dialog-header"><div><div class="eyebrow">WORKBOARD</div><h2>Add a farm task</h2></div><button type="button" class="icon-button" id="closeTaskDialog" aria-label="Close">×</button></div><div class="dialog-body"><div class="form-grid"><label>Task<input name="title" required maxlength="100" placeholder="e.g. Check drip lines"></label><label>Field<select name="field" id="taskField"><option value="">Whole farm</option></select></label><label>Due date<input name="dueDate" type="date" required></label><label>Priority<select name="priority"><option value="normal">Normal</option><option value="high">High</option></select></label></div></div><div class="dialog-footer"><button type="button" class="outline-button" id="cancelTaskDialog">Cancel</button><button type="submit" class="primary-button">Save task</button></div></form></dialog>
   <dialog id="confirmDialog" class="confirm-dialog"><form method="dialog"><div class="dialog-header"><h2 id="confirmTitle">Are you sure?</h2><button type="button" class="icon-button" id="closeConfirm" aria-label="Close">×</button></div><p id="confirmMessage"></p><div class="dialog-footer"><button type="button" class="outline-button" id="cancelConfirm">Cancel</button><button type="submit" class="danger-solid" id="confirmAction">Delete</button></div></form></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <nav class="mobile-bottom-nav" aria-label="Mobile navigation"><button data-view="overview"><span>◫</span>Home</button><button data-view="sheet"><span>▦</span>Ledger</button><button data-view="cycles"><span>◉</span>Cycles</button><button data-view="planner"><span>▱</span>Plan</button><button data-view="insights"><span>⌁</span>Insights</button></nav>
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation"><button data-view="overview"><svg class="ui-icon"><use href="./icons.svg#home"/></svg>Home</button><button data-view="sheet"><svg class="ui-icon"><use href="./icons.svg#table"/></svg>Ledger</button><button data-view="cycles"><svg class="ui-icon"><use href="./icons.svg#cycle"/></svg>Cycles</button><button data-view="planner"><svg class="ui-icon"><use href="./icons.svg#planner"/></svg>Plan</button><button data-view="insights"><svg class="ui-icon"><use href="./icons.svg#insights"/></svg>Insights</button></nav>
   <script src="./app.js"></script>
   <script src="./advanced.js"></script>
 </body>
