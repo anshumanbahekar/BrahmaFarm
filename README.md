@@ -1,24 +1,29 @@
-# BrahmaSpreadsheet
+# BrahmaFarm
 
-BrahmaSpreadsheet is the first working part of BrahmaFarm: a shared, offline-capable farm ledger and analysis interface for web, Android (Java), iOS (Swift), and Windows (.NET). The same `dist/` app runs on all four platforms, so the columns, calculations, and workflows stay consistent.
+BrahmaFarm is a local-first farm operations app for web, Android (Java), iOS (Swift), and Windows (.NET). The same `dist/` interface runs on all four platforms, so records and calculations stay consistent. BrahmaSpreadsheet is its editable farm ledger.
 
 ## What works now
 
-- Editable spreadsheet of dated farm records: field, crop, activity, quantity, water, cost, revenue, health, and notes.
-- Add and remove fields; add, edit, filter, search, and delete records.
-- Complete JSON backup/restore for fields and records, plus CSV import/export for spreadsheet exchange between devices.
-- Dashboard with recorded profit, revenue, water, health, recent activity, and monthly profit.
-- Crop by month profit matrix, crop comparisons, and recommendations with the record counts behind them.
+- Editable spreadsheet of dated farm records: field, crop cycle, activity, quantity, water, cost, revenue, health, and notes. Search, filter, import, export, and edit cells in place.
+- Crop cycles with linked planting, irrigation, health, harvest, expense, and sale records. Each cycle shows recorded costs, revenue, net, water, harvested weight, and yield per acre. Matching older rows can be linked after review.
+- Field and water views with water by field, per-acre water, latest observed health, and field activity.
+- Quick logging for irrigation, health checks, harvests, and sales, with required measurements for each activity.
+- Farm workboard with due dates, priorities, completion, and reopening.
+- Crop planner that calculates estimated net, break-even selling price, water budget, and a fixed downside scenario from **user-entered assumptions**. Plans can be saved and reopened.
+- Record quality checks for missing links, area, measured water, harvest weight, and sale amounts.
+- Complete JSON backup/restore for fields, records, crop cycles, tasks, and saved plans. CSV import/export exchanges ledger rows.
+- Dashboard with recorded net, revenue, water, health, recent activity, and monthly cash flow.
+- Crop by month net matrix, crop comparisons, cycle economics, and recommendations with their data basis.
 - Research briefs that summarize relevant farm records, show missing evidence, and link to searches in FAO, ICAR, and Google Scholar.
 - Installable web PWA and bundled Android, iOS, and Windows apps.
 
-The initial dataset is **illustrative** and is labelled inside the app. Use **Start with my farm** to clear it. The advice engine is deterministic and based on entered records. It does not currently call an AI model, diagnose plant disease, forecast market prices, or fetch live weather. The research desk is a structured helper, not a live deep-research agent.
+The initial dataset is **illustrative** and labelled inside the app. Use **Start with my farm** to clear it. The advice engine is deterministic and based on entered records. It does not currently call an AI model, diagnose plant disease, forecast market prices, or fetch live weather. The research desk is a structured helper, not a live deep-research agent.
 
 ## Data and privacy
 
 Until Firebase is connected, each installation stores its own records locally. The web app uses browser storage; native packages use their embedded web view's persistent storage. Records **do not sync across devices yet**. Export a complete JSON backup regularly. Do not clear browser/app data without a backup. The app has no account system in this version.
 
-The CSV column order is `date,field,crop,activity,quantity,unit,water,cost,revenue,health,notes`. It contains records only; use JSON for a complete backup including field areas. Dates use `YYYY-MM-DD`; empty numeric cells mean unknown. Costs and revenue are in INR, water in litres, and harvest efficiency requires a `Harvest` row with quantity in `kg`.
+The CSV column order is `date,field,crop,activity,quantity,unit,water,cost,revenue,health,notes`. It contains records only and does not carry crop-cycle links; use JSON for a complete backup. Dates use `YYYY-MM-DD`; empty numeric cells mean unknown. Costs and revenue are in INR, water in litres, and harvest efficiency requires a `Harvest` row with quantity in `kg`.
 
 ## Run and build
 
@@ -50,4 +55,4 @@ The intended cloud design is documented in [docs/FIREBASE.md](docs/FIREBASE.md).
 
 ## Product direction
 
-[docs/ROADMAP.md](docs/ROADMAP.md) lays out the next farm modules and the evidence standards for AI advice. This release establishes the ledger and analysis foundation; it is not a complete farm ERP or agronomy decision system.
+[docs/ROADMAP.md](docs/ROADMAP.md) lists remaining company-scale modules and the evidence standards for future AI advice. This release is a working local farm operations system; cloud sync, live research, sensor feeds, and multi-user controls remain future work.

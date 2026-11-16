@@ -3,62 +3,93 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8f4">
+  <meta name="theme-color" content="#122820">
   <meta name="description" content="BrahmaSpreadsheet — a clear view of farm records, water, crop health, and profit.">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <title>BrahmaSpreadsheet · BrahmaFarm</title>
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./theme.css">
 </head>
 <body>
   <div class="app-shell">
+    <div id="mobileScrim" class="mobile-scrim"></div>
     <aside class="sidebar" aria-label="Main navigation">
       <div class="brand"><div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div><div><strong>Brahma<span>Farm</span></strong><small>YOUR FARM, IN FOCUS</small></div></div>
+      <div class="workspace-card"><span class="workspace-card-icon">B</span><span><strong>BrahmaFarm</strong><small>Farm workspace</small></span><span class="workspace-card-chevron">⌄</span></div>
       <div class="workspace-label">WORKSPACE <span class="workspace-dot"></span></div>
       <nav class="main-nav">
         <button class="nav-item active" data-view="overview"><span class="nav-icon">◫</span> Overview</button>
         <button class="nav-item" data-view="sheet"><span class="nav-icon">▦</span> BrahmaSpreadsheet</button>
+        <button class="nav-item" data-view="cycles"><span class="nav-icon">◉</span> Crop cycles</button>
+        <button class="nav-item" data-view="water"><span class="nav-icon">≈</span> Fields & water</button>
+        <button class="nav-item" data-view="planner"><span class="nav-icon">▱</span> Crop planner</button>
+        <div class="nav-divider"></div><div class="nav-section-label">INTELLIGENCE</div>
         <button class="nav-item" data-view="insights"><span class="nav-icon">⌁</span> Insights <span class="nav-badge" id="insightCount">0</span></button>
         <button class="nav-item" data-view="research"><span class="nav-icon">◇</span> Research helper</button>
       </nav>
       <div class="sidebar-spacer"></div>
       <div class="sidebar-bottom">
         <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span> Farm settings</button>
-        <div class="storage-note"><span class="storage-dot"></span><div><strong>Saved on this device</strong><small>Export a backup anytime</small></div></div>
+        <div class="storage-note"><span class="storage-dot"></span><div><strong>Offline ready</strong><small>Saved on this device</small></div></div>
       </div>
     </aside>
 
     <main class="main-content">
       <header class="topbar">
-        <div class="mobile-brand">Brahma<span>Farm</span></div>
+        <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Open menu">☰</button><div class="mobile-brand">Brahma<span>Farm</span></div>
         <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbCurrent">Overview</strong></div>
-        <div class="topbar-right"><span class="today-label" id="todayLabel"></span><button class="icon-button help-button" id="helpButton" title="How this works" aria-label="How this works">?</button><div class="avatar" title="BrahmaFarm workspace">BF</div></div>
+        <div class="topbar-right"><span class="today-label" id="todayLabel"></span><span class="local-pill"><span></span> Local workspace</span><button class="icon-button help-button" id="helpButton" title="How this works" aria-label="How this works">?</button><div class="avatar" title="BrahmaFarm workspace">BF</div></div>
       </header>
 
       <div class="page-wrap">
         <div id="sampleBanner" class="sample-banner"><div><span class="sample-icon">✦</span><strong>You're exploring with sample records.</strong> These numbers are illustrative.</div><button id="clearSampleButton">Start with my farm <span>→</span></button></div>
 
         <section class="view active" id="view-overview">
-          <div class="page-heading"><div><div class="eyebrow">FARM OVERVIEW</div><h1>Good morning. Let’s grow wisely.</h1><p>A clear view of the work, water, and returns across your farm.</p></div><button class="primary-button" data-action="add"><span>＋</span> Add record</button></div>
+          <div class="page-heading"><div><div class="eyebrow">FARM COMMAND CENTRE</div><h1>Your farm, clearly in view.</h1><p>Operations, water, crop health and returns in one place.</p></div><button class="primary-button" data-action="add"><span>＋</span> Add record</button></div>
+          <div id="heroStrip" class="hero-strip"></div>
+          <div class="quick-log"><div><span class="eyebrow">QUICK LOG</span><strong>What happened on the farm?</strong></div><div class="quick-log-actions"><button data-quick-activity="Irrigation"><span>≈</span> Water</button><button data-quick-activity="Health"><span>✳</span> Health check</button><button data-quick-activity="Harvest"><span>◈</span> Harvest</button><button data-quick-activity="Sale"><span>₹</span> Sale</button></div></div>
           <div class="summary-grid" id="summaryGrid"></div>
           <div class="overview-grid">
             <div class="panel profit-panel"><div class="panel-head"><div><div class="eyebrow">PERFORMANCE</div><h2>Recorded net over time</h2><p>Revenue minus costs dated in each month</p></div><span class="panel-chip">Recorded data</span></div><div id="profitChart" class="profit-chart"></div></div>
             <div class="panel attention-panel"><div class="panel-head"><div><div class="eyebrow">FARM PULSE</div><h2>Worth your attention</h2><p>Signals from your own records</p></div><span class="pulse-symbol">✳</span></div><div id="attentionList"></div><button class="text-link" data-view="insights">See all insights <span>→</span></button></div>
           </div>
+          <div class="section-heading"><div><div class="eyebrow">ON THE GROUND</div><h2>Fields at a glance</h2></div><button class="text-link" data-view="water">Open field view →</button></div>
+          <div id="overviewFields" class="field-card-grid"></div>
+          <div class="overview-lower-grid"><div class="panel work-panel"><div class="panel-head"><div><div class="eyebrow">WORKBOARD</div><h2>Upcoming work</h2><p>Simple tasks for the next farm decisions</p></div><button class="text-link" id="addTaskButton">＋ Add task</button></div><div id="overviewTasks"></div></div><div class="panel quality-panel"><div class="panel-head"><div><div class="eyebrow">DATA FOUNDATION</div><h2>Record quality</h2><p>Know what can and cannot be trusted yet</p></div></div><div id="overviewQuality"></div></div></div>
           <div class="panel recent-panel"><div class="panel-head"><div><div class="eyebrow">ACTIVITY</div><h2>Recent records</h2></div><button class="text-link" data-view="sheet">Open spreadsheet <span>→</span></button></div><div id="recentRecords"></div></div>
         </section>
 
         <section class="view" id="view-sheet">
           <div class="page-heading"><div><div class="eyebrow">YOUR SOURCE OF TRUTH</div><h1>BrahmaSpreadsheet</h1><p>Every farm activity in one editable ledger. Changes save automatically on this device.</p></div><button class="primary-button" data-action="add"><span>＋</span> Add row</button></div>
           <div class="sheet-toolbar"><div class="sheet-tabs"><span class="sheet-tab active">Farm records <span id="recordCount">0</span></span></div><div class="toolbar-actions"><label class="search-box"><span>⌕</span><input id="sheetSearch" type="search" placeholder="Search records" aria-label="Search records"></label><select id="sheetFilter" aria-label="Filter records"><option value="all">All activities</option><option>Planting</option><option>Irrigation</option><option>Health</option><option>Harvest</option><option>Expense</option><option>Sale</option><option>Observation</option></select><button class="outline-button" id="importButton">↑ Import CSV</button><button class="outline-button" id="exportButton">↓ Export CSV</button><input type="file" accept=".csv,text/csv" id="csvFile" hidden></div></div>
-          <div class="sheet-container"><div class="sheet-scroll"><table class="data-table" id="dataTable"><thead><tr><th class="row-num">#</th><th>Date</th><th>Field</th><th>Crop</th><th>Activity</th><th class="num">Quantity</th><th>Unit</th><th class="num">Water (L)</th><th class="num">Cost (₹)</th><th class="num">Revenue (₹)</th><th>Health</th><th class="note-col">Notes</th><th class="row-actions">⋯</th></tr></thead><tbody id="sheetBody"></tbody></table></div><div class="sheet-footer"><span id="sheetFooterText"></span><span>Click a cell to edit · Tab to move between cells</span></div></div>
+          <div class="sheet-container"><div class="sheet-scroll"><table class="data-table" id="dataTable"><thead><tr><th class="row-num">#</th><th>Date</th><th>Field</th><th>Crop</th><th>Cycle</th><th>Activity</th><th class="num">Quantity</th><th>Unit</th><th class="num">Water (L)</th><th class="num">Cost (₹)</th><th class="num">Revenue (₹)</th><th>Health</th><th class="note-col">Notes</th><th class="row-actions">⋯</th></tr></thead><tbody id="sheetBody"></tbody></table></div><div class="sheet-footer"><span id="sheetFooterText"></span><span>Click a cell to edit · Tab to move between cells</span></div></div>
           <div class="sheet-help"><span>ⓘ</span> Record actual amounts. Profit and advice use your entries only; missing values are treated as unknown, not zero.</div>
+        </section>
+
+        <section class="view" id="view-cycles">
+          <div class="page-heading"><div><div class="eyebrow">GROWING SEASONS</div><h1>Crop cycles</h1><p>Connect planting, water, harvest and sales to the same crop.</p></div><button class="primary-button" id="newCycleButton"><span>＋</span> New cycle</button></div>
+          <div id="cycleSummary" class="mini-stat-row"></div><div id="cycleGrid" class="cycle-grid"></div>
+          <div id="cycleDetail" class="panel cycle-detail"></div>
+        </section>
+
+        <section class="view" id="view-water">
+          <div class="page-heading"><div><div class="eyebrow">RESOURCE INTELLIGENCE</div><h1>Fields & water</h1><p>See where water is recorded and where evidence is missing.</p></div><button class="outline-button" data-view="sheet">Open water records →</button></div>
+          <div id="waterSummary" class="mini-stat-row"></div><div class="water-layout"><div class="panel water-panel"><div class="panel-head"><div><div class="eyebrow">BY FIELD</div><h2>Water distribution</h2><p>Litres recorded in farm activity</p></div></div><div id="waterByField"></div></div><div class="panel health-panel"><div class="panel-head"><div><div class="eyebrow">OBSERVATIONS</div><h2>Latest crop health</h2><p>From field notes, not image diagnosis</p></div></div><div id="healthByField"></div></div></div>
+          <div class="panel field-detail-panel"><div class="panel-head"><div><div class="eyebrow">FIELD PROFILES</div><h2>Every field, one view</h2></div></div><div id="fieldProfiles"></div></div>
+        </section>
+
+        <section class="view" id="view-planner">
+          <div class="page-heading"><div><div class="eyebrow">DECISION STUDIO</div><h1>Crop planner</h1><p>Test your own assumptions before committing a field.</p></div></div>
+          <div class="planner-layout"><div class="panel planner-input"><div class="panel-head"><div><div class="eyebrow">SCENARIO INPUTS</div><h2>Build a field plan</h2><p>These are estimates you enter, not a price or yield forecast.</p></div></div><form id="plannerForm" class="planner-form"><label>Field<select name="field" id="planField" required></select></label><label>Crop<input name="crop" id="planCrop" required placeholder="e.g. Tomato" maxlength="40"></label><label>Planned month<input name="month" type="month" required></label><label>Area (acres)<input name="area" type="number" min="0.01" step="any" required></label><label>Expected yield (kg / acre)<input name="yield" type="number" min="0" step="any" required></label><label>Expected selling price (₹ / kg)<input name="price" type="number" min="0" step="any" required></label><label>Expected cost (₹ / acre)<input name="cost" type="number" min="0" step="any" required></label><label>Water budget (L / acre)<input name="water" type="number" min="0" step="any" placeholder="Optional"></label><button class="primary-button" type="submit">Calculate scenario →</button></form></div><div class="panel planner-output"><div class="panel-head"><div><div class="eyebrow">DECISION BRIEF</div><h2>What this plan could mean</h2><p>A calculation from your inputs, with downside checks</p></div></div><div id="planResult" class="empty-state">Enter assumptions to see the numbers, break-even price and risk range.</div></div></div>
+          <div class="section-heading"><div><div class="eyebrow">YOUR SCENARIOS</div><h2>Saved plans</h2></div></div><div id="savedPlans" class="saved-plans"></div>
         </section>
 
         <section class="view" id="view-insights">
           <div class="page-heading"><div><div class="eyebrow">EVIDENCE, NOT GUESSWORK</div><h1>Farm insights</h1><p>Honest recommendations based on what you’ve recorded so far.</p></div><button class="outline-button" data-view="sheet">View source records →</button></div>
           <div class="insight-top-grid"><div class="panel"><div class="panel-head"><div><div class="eyebrow">CROP × MONTH</div><h2>Recorded net by month</h2><p>Revenue minus costs dated that month. Blank means no data.</p></div></div><div id="monthMatrix"></div></div><div class="panel"><div class="panel-head"><div><div class="eyebrow">CROP COMPARISON</div><h2>Recorded returns</h2><p>Measured results, not a future price forecast</p></div></div><div id="cropRanking"></div></div></div>
+          <div class="insight-extra-grid"><div class="panel"><div class="panel-head"><div><div class="eyebrow">CYCLE ECONOMICS</div><h2>Returns by crop cycle</h2><p>Only records linked to a cycle are included</p></div></div><div id="cycleInsights"></div></div><div class="panel"><div class="panel-head"><div><div class="eyebrow">EVIDENCE QUALITY</div><h2>What is missing</h2><p>Improve these entries before trusting comparisons</p></div></div><div id="qualityInsights"></div></div></div>
           <div class="section-heading"><div><div class="eyebrow">RECOMMENDATIONS</div><h2>What the records suggest</h2></div><span class="subtle-label" id="insightBasis"></span></div><div class="recommendation-grid" id="recommendations"></div>
           <div class="method-note"><strong>How these insights work</strong><p>We compare entered revenue, cost, water, harvest, and health records. Monthly net is cash flow by entry date; it is not crop-cycle profit. A strong past return does not guarantee the next one: weather, yield, market price, and soil conditions can change.</p></div>
         </section>
@@ -76,9 +107,13 @@
     </main>
   </div>
 
-  <dialog id="recordDialog" class="record-dialog"><form id="recordForm" method="dialog"><div class="dialog-header"><div><div class="eyebrow">FARM LEDGER</div><h2 id="dialogTitle">Add a record</h2></div><button type="button" class="icon-button" id="closeDialog" aria-label="Close">×</button></div><div class="dialog-body"><div class="form-grid"><label>Date<input name="date" type="date" required></label><label>Field<select name="field" id="formField" required></select></label><label>Crop<input name="crop" list="cropOptions" placeholder="e.g. Tomato" required maxlength="40"><datalist id="cropOptions"></datalist></label><label>Activity<select name="activity"><option>Planting</option><option>Irrigation</option><option>Health</option><option>Harvest</option><option>Expense</option><option>Sale</option><option>Observation</option></select></label><label>Quantity<input name="quantity" type="number" min="0" step="any" placeholder="Optional"></label><label>Unit<select name="unit"><option value="">—</option><option>kg</option><option>bags</option><option>plants</option><option>acres</option><option>hours</option><option>L</option></select></label><label>Water used (L)<input name="water" type="number" min="0" step="any" placeholder="Optional"></label><label>Cost (₹)<input name="cost" type="number" min="0" step="any" placeholder="Optional"></label><label>Revenue (₹)<input name="revenue" type="number" min="0" step="any" placeholder="Optional"></label><label>Crop health<select name="health"><option value="">Not observed</option><option>Good</option><option>Watch</option><option>Poor</option></select></label></div><label class="wide-label">Notes<textarea name="notes" rows="3" placeholder="What happened? Any observations or decisions?" maxlength="500"></textarea></label></div><div class="dialog-footer"><button type="button" class="outline-button" id="cancelDialog">Cancel</button><button type="submit" class="primary-button">Save record</button></div></form></dialog>
+  <dialog id="recordDialog" class="record-dialog"><form id="recordForm" method="dialog"><div class="dialog-header"><div><div class="eyebrow">FARM LEDGER</div><h2 id="dialogTitle">Add a record</h2></div><button type="button" class="icon-button" id="closeDialog" aria-label="Close">×</button></div><div class="dialog-body"><div class="form-grid"><label>Date<input name="date" type="date" required></label><label>Field<select name="field" id="formField" required></select></label><label>Crop<input name="crop" list="cropOptions" placeholder="e.g. Tomato" required maxlength="40"><datalist id="cropOptions"></datalist></label><label>Crop cycle<select name="cycleId" id="formCycle"><option value="">Unlinked record</option></select></label><label>Activity<select name="activity"><option>Planting</option><option>Irrigation</option><option>Health</option><option>Harvest</option><option>Expense</option><option>Sale</option><option>Observation</option></select></label><label>Quantity<input name="quantity" type="number" min="0" step="any" placeholder="Optional"></label><label>Unit<select name="unit"><option value="">—</option><option>kg</option><option>bags</option><option>plants</option><option>acres</option><option>hours</option><option>L</option></select></label><label>Water used (L)<input name="water" type="number" min="0" step="any" placeholder="Optional"></label><label>Cost (₹)<input name="cost" type="number" min="0" step="any" placeholder="Optional"></label><label>Revenue (₹)<input name="revenue" type="number" min="0" step="any" placeholder="Optional"></label><label>Crop health<select name="health"><option value="">Not observed</option><option>Good</option><option>Watch</option><option>Poor</option></select></label></div><p id="recordGuidance" class="record-guidance"></p><label class="wide-label">Notes<textarea name="notes" rows="3" placeholder="What happened? Any observations or decisions?" maxlength="500"></textarea></label></div><div class="dialog-footer"><button type="button" class="outline-button" id="cancelDialog">Cancel</button><button type="submit" class="primary-button">Save record</button></div></form></dialog>
+  <dialog id="cycleDialog" class="record-dialog"><form id="cycleForm" method="dialog"><div class="dialog-header"><div><div class="eyebrow">GROWING SEASONS</div><h2 id="cycleDialogTitle">New crop cycle</h2></div><button type="button" class="icon-button" id="closeCycleDialog" aria-label="Close">×</button></div><div class="dialog-body"><div class="form-grid"><label>Field<select name="field" id="cycleField" required></select></label><label>Crop<input name="crop" required maxlength="40" placeholder="e.g. Tomato"></label><label>Start date<input name="startDate" type="date" required></label><label>End date<input name="endDate" type="date"></label><label>Area (acres)<input name="area" type="number" min="0.01" step="any"></label><label>Status<select name="status"><option value="active">Active</option><option value="harvested">Harvested</option><option value="planned">Planned</option></select></label></div><label class="wide-label">Notes<textarea name="notes" rows="2" maxlength="300" placeholder="Variety, season or growing method"></textarea></label></div><div class="dialog-footer"><button type="button" class="outline-button" id="cancelCycleDialog">Cancel</button><button type="submit" class="primary-button">Save cycle</button></div></form></dialog>
+  <dialog id="taskDialog" class="record-dialog"><form id="taskForm" method="dialog"><div class="dialog-header"><div><div class="eyebrow">WORKBOARD</div><h2>Add a farm task</h2></div><button type="button" class="icon-button" id="closeTaskDialog" aria-label="Close">×</button></div><div class="dialog-body"><div class="form-grid"><label>Task<input name="title" required maxlength="100" placeholder="e.g. Check drip lines"></label><label>Field<select name="field" id="taskField"><option value="">Whole farm</option></select></label><label>Due date<input name="dueDate" type="date" required></label><label>Priority<select name="priority"><option value="normal">Normal</option><option value="high">High</option></select></label></div></div><div class="dialog-footer"><button type="button" class="outline-button" id="cancelTaskDialog">Cancel</button><button type="submit" class="primary-button">Save task</button></div></form></dialog>
   <dialog id="confirmDialog" class="confirm-dialog"><form method="dialog"><div class="dialog-header"><h2 id="confirmTitle">Are you sure?</h2><button type="button" class="icon-button" id="closeConfirm" aria-label="Close">×</button></div><p id="confirmMessage"></p><div class="dialog-footer"><button type="button" class="outline-button" id="cancelConfirm">Cancel</button><button type="submit" class="danger-solid" id="confirmAction">Delete</button></div></form></dialog>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <nav class="mobile-bottom-nav" aria-label="Mobile navigation"><button data-view="overview"><span>◫</span>Home</button><button data-view="sheet"><span>▦</span>Ledger</button><button data-view="cycles"><span>◉</span>Cycles</button><button data-view="planner"><span>▱</span>Plan</button><button data-view="insights"><span>⌁</span>Insights</button></nav>
   <script src="./app.js"></script>
+  <script src="./advanced.js"></script>
 </body>
 </html>

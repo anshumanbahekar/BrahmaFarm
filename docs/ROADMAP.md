@@ -1,20 +1,20 @@
 # BrahmaFarm product roadmap
 
-## 1. Farm ledger and analysis — current release
+## 1. Farm ledger and analysis — implemented locally
 
-Fields, dated farm activity, water, costs, revenue, health observations, CSV backup, month and crop views, and evidence-labelled guidance are implemented. The shared interface runs on web, Android Java, iOS Swift, and Windows WPF.
+Fields, dated farm activity, water, costs, revenue, health observations, CSV and JSON backup, month and crop views, and evidence-labelled guidance are implemented. The shared interface runs on web, Android Java, iOS Swift, and Windows WPF.
 
 ## 2. Cloud foundation
 
 Firebase Auth, farm membership and roles, Firestore sync, offline conflict handling, audit history, attachments, and automated backup. This stage starts when the Firebase project and app registrations are available.
 
-## 3. Crop-cycle operations
+## 3. Crop-cycle operations — foundation implemented
 
-Link each planting, input, irrigation, health event, harvest, and sale to a crop cycle and field. Add inventory, recurring tasks, labour, equipment, expenses, soil tests, and field-level yield. Provide cost per acre, profit per cycle, yield per acre, and water per harvested kilogram with coverage warnings.
+Crop cycles now link farm activities to fields and show recorded revenue, costs, net, water, harvest weight, and yield per acre. The workboard handles dated tasks and priorities. Next: inventory, recurring tasks, labour, equipment, detailed expenses, soil tests, and cycle-level coverage checks.
 
-## 4. Decision support
+## 4. Decision support — scenario calculator implemented
 
-Weather and evapotranspiration data, local market prices, crop calendars, soil constraints, and user-entered irrigation capacity. Separate **observed** results, **scenario estimates**, and **forecasts**. Show the source, date, geographic scope, and uncertainty of each input. Compare candidate crops by expected net margin and downside risk, including a “not enough data” result.
+The current planner computes break-even, expected net, water budget, and a downside case from the user's own inputs. Next: weather and evapotranspiration data, local market prices, crop calendars, soil constraints, irrigation capacity, and source-labelled comparisons across crops. Keep **observed** results, **scenario estimates**, and **forecasts** distinct.
 
 ## 5. AI and deep research
 

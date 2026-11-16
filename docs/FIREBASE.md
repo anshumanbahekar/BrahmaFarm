@@ -17,21 +17,23 @@ farms/{farmId}                      ownerUid, name, currency, timezone, createdA
 farms/{farmId}/members/{uid}        role: owner | manager | editor | viewer
 farms/{farmId}/fields/{fieldId}     name, areaAcres, soil, waterSource
 farms/{farmId}/records/{recordId}   date, fieldId, crop, activity, quantity, unit,
-                                   waterLitres, costINR, revenueINR, health, notes,
+                                   cycleId, waterLitres, costINR, revenueINR, health, notes,
                                    createdBy, createdAt, updatedAt, revision
 farms/{farmId}/cropCycles/{cycleId} fieldId, crop, plantingDate, harvestDate, status
 farms/{farmId}/tasks/{taskId}       title, fieldId, dueDate, status, assigneeUid
+farms/{farmId}/plans/{planId}       crop, fieldId, month, area, yield, price, cost,
+                                   waterBudget, savedBy, savedAt
 farms/{farmId}/research/{reportId} question, evidenceRefs, sources, answer, caveats
 farms/{farmId}/audit/{eventId}      actorUid, action, documentPath, timestamp
 ```
 
-`recordId` is a client-generated UUID. Each record needs `updatedAt` and `revision` for conflict handling. Financial analysis should eventually attribute costs, water, harvest, and sales to a **crop cycle**, not merely to a calendar month. The current month matrix groups dated entries and is labelled as historical recorded data.
+`recordId` is a client-generated UUID. Each record needs `updatedAt` and `revision` for conflict handling. Local financial analysis already attributes linked costs, water, harvest, and sales to crop cycles. The month matrix groups dated entries and is labelled as historical recorded cash flow.
 
 ## Migration from this release
 
-1. Export CSV backups from every device before enabling sync.
+1. Export complete JSON backups from every device before enabling sync. CSV omits cycle links, tasks, and saved plans.
 2. Create a farm and its owner membership using a trusted bootstrap flow.
-3. Import fields and records; map field names to stable `fieldId` values. Deduplicate imported records using a migration fingerprint or user review because current CSV exports omit the local UUID.
+3. Import fields, records, cycles, tasks, and plans; map field names to stable `fieldId` values. Preserve local IDs where possible, validate cycle links, and deduplicate overlapping device backups with user review.
 4. Add a sync adapter behind the current `load`/`save` boundary. Keep a local queue for offline edits and show sync status in the UI.
 5. Test conflicts, permission changes, account recovery, and sign-out on all four platforms before turning on production sync.
 
