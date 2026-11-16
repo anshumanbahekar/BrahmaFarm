@@ -1,0 +1,28 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function farm(farmId) { return get(/databases/$(database)/documents/farms/$(farmId)); }
+    function isOwner(farmId) { return signedIn() && farm(farmId).data.ownerUid == request.auth.uid; }
+    function isMember(farmId) {
+      return signedIn() && exists(/databases/$(database)/documents/farms/$(farmId)/members/$(request.auth.uid));
+    }
+    function canEdit(farmId) {
+      return isOwner(farmId) || (isMember(farmId) &&
+        get(/databases/$(database)/documents/farms/$(farmId)/members/$(request.auth.uid)).data.role in ['owner', 'manager', 'editor']);
+    }
+    match /farms/{farmId} {
+      allow create: if signedIn() && request.resource.data.ownerUid == request.auth.uid;
+      allow read: if isOwner(farmId) || isMember(farmId);
+      allow update, delete: if isOwner(farmId) && request.resource.data.ownerUid == resource.data.ownerUid;
+      match /members/{memberUid} {
+        allow read: if isOwner(farmId) || isMember(farmId);
+        allow write: if isOwner(farmId);
+      }
+      match /{collection}/{documentId} {
+        allow read: if isOwner(farmId) || isMember(farmId);
+        allow create, update, delete: if canEdit(farmId) && collection in ['fields','records','cropCycles','tasks'];
+      }
+    }
+  }
+}

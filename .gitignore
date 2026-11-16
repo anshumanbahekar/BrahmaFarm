@@ -1,0 +1,12 @@
+android/.gradle/
+android/local.properties
+android/app/build/
+windows/bin/
+windows/obj/
+artifacts/
+outputs/
+ios/DerivedData/
+*.user
+*.suo
+*.log
+__pycache__/
